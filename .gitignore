@@ -15,3 +15,6 @@ book/courseml.out
 book/courseml.pdf
 book/courseml.toc
 book/toc.html
+
+# Ignore MacOS trash folders
+.DS_Store
