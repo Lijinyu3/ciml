@@ -19,4 +19,5 @@ book/toc.html
 # Ignore MacOS trash folders
 .DS_Store
 
-# Test
+# Ignore pycache
+__pycache__
