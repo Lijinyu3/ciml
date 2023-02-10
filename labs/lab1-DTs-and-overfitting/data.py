@@ -14,7 +14,7 @@ def loadTextDataBinary(filename, fixedDictionary=None):
             for w in a[1:]:
                 x[w] = 1.
             if fixedDictionary is None:
-                for w in x.iterkeys():
+                for w in x:
                     wfreq[w] += 1
             D.append( (x,y) )
     h.close()
@@ -23,7 +23,7 @@ def loadTextDataBinary(filename, fixedDictionary=None):
         wid = {}
         widr = []
         maxId = 1
-        for w,c in wfreq.iteritems():
+        for w,c in wfreq.items():
             if c >= 20 and c < 0.7*len(D):
                 wid[w] = maxId
                 widr.append(w)
@@ -40,8 +40,8 @@ def loadTextDataBinary(filename, fixedDictionary=None):
     for n in range(len(D)):
         (x,y) = D[n]
         Yall[n] = y
-        for w in x.iterkeys():
-            if wid.has_key(w):
+        for w in x:
+            if w in wid:
                 Xall[n,wid[w]-1] = 1.
 
     return Xall,Yall,widr
@@ -60,9 +60,9 @@ def showTree(dt, dictionary):
             sys.stdout.write(s)
             sys.stdout.write('-> ')
         if thresh[node] == -2: # leaf
-            print 'class %d\t(%d for class 0, %d for class 1)' % (np.argmax(value[node]), value[node][0,0], value[node][0,1])
+            print('class %d\t(%d for class 0, %d for class 1)' % (np.argmax(value[node]), value[node][0,0], value[node][0,1]))
         else: # internal node
-            print '%s?' % feats[node]
+            print('%s?' % feats[node])
             showTree_(left[ node], 'N', depth+1)
             showTree_(right[node], 'Y', depth+1)
 
